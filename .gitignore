@@ -1,0 +1,18 @@
+# VS Code MCP config (contains API keys)
+.vscode/mcp.json
+
+# PRD documents (not synced)
+prd/
+
+# Test execution results (not synced)
+test-results/
+test-report/
+testsprite_tests/tmp/
+screenshots/
+*.auth/
+.pipeline-state.json
+
+# Temp files
+nul
+node_modules/
+__pycache__/
