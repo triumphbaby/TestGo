@@ -12,6 +12,13 @@ screenshots/
 *.auth/
 .pipeline-state.json
 
+# StockAnalysis (not part of TestGo)
+StockAnalysis_*.xlsx
+gen_search_ui_testcases.py
+
+# TestSprite temp files
+testsprite_tests/
+
 # Temp files
 nul
 node_modules/
