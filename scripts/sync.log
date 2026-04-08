@@ -15,3 +15,6 @@
 2026-04-06 22:00:04 | Sync completed: daily sync: 1 modified (2026-04-06)
 2026-04-07 22:00:03 | Changes detected:
 2026-04-07 22:00:03 |  M scripts/sync.log
+2026-04-07 22:00:03 | Sync completed: daily sync: 1 modified (2026-04-07)
+2026-04-08 22:00:02 | Changes detected:
+2026-04-08 22:00:02 |  M .claude/settings.local.json  M .claude/skills/full-qa-pipeline.md  M .claude/skills/gen-test-strategy.md  M scripts/sync.log ?? .claude/skills/figma-analyze.md ?? doc/ ?? "testcase/\344\272\221\350\264\246\345\217\267\350\256\276\347\275\256/" ?? "testcase/\346\226\260\350\256\276\345\244\207\345\210\235\345\247\213\345\214\226/"

@@ -42,7 +42,12 @@
       "Bash(git commit -m \"$\\(cat <<''EOF''\nInitial commit: QA pipeline skills, test cases, and example templates\n\n- 18 Claude skills \\(.claude/skills/\\): test strategy, execution, bug reporting, full QA pipeline, etc.\n- 7 example templates \\(example/\\): TestStrategy, TestCase, TestExecution, BugReporting, TestReport, agents, SKILL\n- Test cases for AI学习任务, AI模型管理, CopySource_AI学习继承, 云账号系统\n- e2e Playwright infrastructure \\(helpers, config, specs\\)\n- TestSprite integration files\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>\nEOF\n\\)\")",
       "Bash(git push:*)",
       "Bash(git rm:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(ls -la \"D:\\\\ATest\\\\Test\\\\AI\\\\Project\\\\Claude\\\\TestGo\\\\.claude\"\" 2>&1 || echo \"Directory may not exist \")",
+      "Bash(python3:*)",
+      "Bash(PYTHONIOENCODING=utf-8 python:*)",
+      "Bash(timeout:*)",
+      "Bash(findstr:*)"
     ]
   }
 }
