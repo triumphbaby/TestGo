@@ -84,12 +84,11 @@
 ```
 TestGo/
 ├── .claude/
-│   ├── skills/                  ← 19 个 Skill 命令定义
+│   ├── skills/                  ← 19 个 Skill 命令定义 + testcase-spec.md 用例规范
 │   ├── settings.local.json      ← 权限配置
 │   └── README.md                ← 本文档
 │
-├── prd/                         ← 需求文档
-│   ├── testcase-spec.md         ← 用例字段规范（核心共享）
+├── prd/                         ← 需求文档（.gitignore，本地使用）
 │   ├── AI学习任务/
 │   ├── AI模型管理/
 │   ├── AI设置/
@@ -182,7 +181,7 @@ UI Spec        Strategy.md     gen_testcases.py  Execution.md  Bug分类       R
 
 ## 参考资源
 
-- **用例规范**：`prd/testcase-spec.md` - 所有测试用例的字段规范和格式要求
+- **用例规范**：`.claude/skills/testcase-spec.md` - 所有测试用例的字段规范和格式要求
 - **模板参考**：`example/` 目录下的 5 个模板文件
 - **QA 知识库**：`doc/QA-HowTo.md`
 

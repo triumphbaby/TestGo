@@ -1,8 +1,13 @@
 # VS Code MCP config (contains API keys)
 .vscode/mcp.json
 
-# PRD documents (not synced)
+# PRD documents (local only)
 prd/
+
+# Test output (local only)
+testcase/
+doc/
+docs/
 
 # Test execution results (not synced)
 test-results/

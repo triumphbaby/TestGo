@@ -124,7 +124,7 @@ Phase 1 完成：
 2. **生成用例**（根据 `--types` 参数）：
    - 需求基线：读取 **Phase 1 补充后的 PRD 文档**（包含用户已确认的 `[策略补充]` 内容）
    - 指定 `--platform` 时，用例仅覆盖与目标平台相关的 FR/AC，跳过另一端专属需求
-   - `functional`（默认）：读取 `prd/testcase-spec.md` 获取用例规范，按照功能测试覆盖清单设计用例，使用 Python + openpyxl 生成 xlsx
+   - `functional`（默认）：读取 `.claude/skills/testcase-spec.md` 获取用例规范，按照功能测试覆盖清单设计用例，使用 Python + openpyxl 生成 xlsx
    - 如 `artifacts.ui_spec` 非空 → 读取 UI Spec 作为视觉验收基线：
      - 预期结果引用具体颜色HEX值（如 `按钮背景色为 #6155f5`）
      - 预期结果引用具体文案内容（如 `标题显示"AI 模型"`）
@@ -327,7 +327,7 @@ Phase 4 完成 - 分析结果：
 
 - 这是一个编排器，它的职责是协调各阶段的执行顺序和数据传递
 - 每个阶段的详细逻辑参考对应的 example 文档
-- 用例生成遵循 `prd/testcase-spec.md` 规范
+- 用例生成遵循 `.claude/skills/testcase-spec.md` 规范
 - 用例评审按 5 维度执行
 - 执行记录和缺陷清单遵循 `example/TestExecution.md` 格式
 - 缺陷统计遵循 `example/BugReporting.md` 格式

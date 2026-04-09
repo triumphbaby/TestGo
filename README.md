@@ -101,21 +101,13 @@ UI Spec        Strategy.md     gen_testcases.py  Execution.md  Bug分类       R
 ```
 TestGo/
 ├── .claude/
-│   └── skills/              ← 19 个 Skill 命令定义
+│   └── skills/              ← 19 个 Skill 命令定义 + testcase-spec.md 用例规范
 │
-├── prd/                     ← 需求文档（.gitignore）
-│   ├── testcase-spec.md     ← 用例字段规范（核心共享）
+├── prd/                     ← 需求文档（.gitignore，本地使用）
 │   └── {模块名}/            ← 各模块 PRD
 │
-├── testcase/                ← 测试产出
-│   └── {模块名}/
-│       ├── .pipeline-state-pc.json      ← 管线进度
-│       ├── *_Strategy.md                ← 测试策略
-│       ├── *_PRD_Supplements.md         ← PRD 补充清单
-│       ├── gen_testcases_pc.py          ← 用例生成脚本
-│       ├── *_Functional.xlsx            ← 功能测试用例
-│       ├── *_Review.md                  ← 评审报告
-│       └── e2e/                         ← Playwright 自动化（可选）
+├── testcase/                ← 测试产出（.gitignore，本地使用）
+│   └── {模块名}/            ← 策略/用例/报告/e2e 脚本等
 │
 ├── example/                 ← 模板参考
 │   ├── TestStrategy.md
@@ -124,8 +116,8 @@ TestGo/
 │   ├── BugReporting.md
 │   └── TestReport.md
 │
-└── doc/
-    └── QA-HowTo.md          ← QA 问答知识库
+├── doc/                     ← QA 知识库（.gitignore，本地使用）
+└── docs/                    ← 对话记录（.gitignore，本地使用）
 ```
 
 ## 已覆盖模块
