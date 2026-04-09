@@ -103,11 +103,6 @@ TestGo/
 ├── .claude/
 │   └── skills/              ← 19 个 Skill 命令定义 + testcase-spec.md 用例规范
 │
-├── prd/                     ← 需求文档（.gitignore，本地使用）
-│   └── {模块名}/            ← 各模块 PRD
-│
-├── testcase/                ← 测试产出（.gitignore，本地使用）
-│   └── {模块名}/            ← 策略/用例/报告/e2e 脚本等
 │
 ├── example/                 ← 模板参考
 │   ├── TestStrategy.md
@@ -116,20 +111,8 @@ TestGo/
 │   ├── BugReporting.md
 │   └── TestReport.md
 │
-├── doc/                     ← QA 知识库（.gitignore，本地使用）
-└── docs/                    ← 对话记录（.gitignore，本地使用）
-```
 
-## 已覆盖模块
 
-| 模块 | 版本 | 阶段 |
-|------|------|------|
-| AI学习任务 | - | e2e 执行完成 (12/12 PASS) |
-| AI模型管理 | - | 用例已生成 |
-| 云账号系统 | - | 用例已生成 |
-| CopySource AI学习继承 | - | 用例已生成 |
-| 新设备初始化 | V190 PC | Phase 2 完成（76 条用例，评审 8.5/10） |
-| ZettAgent MVP | V190 PC | Phase 1 完成（策略 + 29 条 PRD 补充） |
 
 ## License
 
