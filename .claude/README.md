@@ -1,259 +1,192 @@
-# 📚 TestGo Skills 使用指南
+# TestGo - NAS QA 自动化工具集
 
-本项目为 NAS 产品测试工程师提供了一套完整的测试用例生成和管理工具。
+基于 Claude Code 的 NAS 产品测试自动化平台，提供从 PRD 到测试报告的全流程 QA 能力。
 
-## 🚀 可用快捷命令（Skills）
+## 快速开始
 
-### 1️⃣ 测试用例生成系列
+```bash
+# 一条命令跑完整个 QA 流程
+/全流程QA管线 prd/xxx.md --platform pc --no-testsprite
 
-#### `/功能测试用例`
-将需求文档转换为功能测试用例（xlsx 格式）
-
-**用法：**
+# 或单独使用某个环节
+/测试策略生成 prd/xxx.md
+/功能测试用例 prd/xxx.md
+/测试用例评审 testcase/xxx.xlsx
 ```
-/功能测试用例 需求文档.md
-/功能测试用例 <直接粘贴需求文本>
-```
-
-**覆盖范围：**
-- P0：核心正向场景
-- P1：有效/无效等价类、边界值、特殊字符、并发、权限等
-- P2：数据异常、设备重启
 
 ---
 
-#### `/兼容性测试用例`
-将需求文档转换为兼容性测试用例（xlsx 格式）
+## Skills 命令一览
 
-**用法：**
-```
-/兼容性测试用例 需求文档.md
-```
+### 核心编排
 
-**覆盖范围：**
-- P1：平台、浏览器、操作系统、终端、网络环境
-- P2：弱网、断网处理
+| 命令 | 说明 |
+|------|------|
+| `/全流程QA管线` | 5 阶段全流程编排：策略 → 用例 → 执行 → 分析 → 报告。支持 `--platform mobile\|pc`、`--figma`、`--no-testsprite` 等参数 |
 
----
+### Phase 0 - 设计稿分析
 
-#### `/专项测试用例`
-将需求文档转换为专项测试用例（xlsx 格式）
+| 命令 | 说明 |
+|------|------|
+| `/Figma设计稿分析` | 从 Figma 设计稿提取 UI 规格，生成结构化 UI Spec 文档 |
 
-**用法：**
-```
-/专项测试用例 需求文档.md
-```
+### Phase 1 - 策略
 
-**覆盖范围：**
-- P2：存储池异常（拔盘、降级、损毁）
-- P2：安全测试（XSS、SQL注入、鉴权等）
-- P2：性能与压力测试
+| 命令 | 说明 |
+|------|------|
+| `/测试策略生成` | 根据 PRD 自动生成测试策略文档（风险分析、测试范围、深度广度等 8 章） |
 
----
+### Phase 2 - 用例设计
 
-#### `/升级刷机测试用例`
-将需求文档转换为升级刷机测试用例（xlsx 格式）
+| 命令 | 说明 |
+|------|------|
+| `/功能测试用例` | 需求 → 功能测试用例 xlsx（P0 核心流程 / P1 等价类+边界值 / P2 异常容错） |
+| `/兼容性测试用例` | 需求 → 兼容性测试用例 xlsx（浏览器、OS、分辨率、网络环境） |
+| `/专项测试用例` | 需求 → 专项测试用例 xlsx（存储异常、安全、性能压力） |
+| `/升级刷机测试用例` | 需求 → 升级刷机测试用例 xlsx（DB 脚本、OTA、刷机初始化） |
+| `/Bugfix验证用例` | Bug 修复 → 三层验证用例（根因验证 / 症状验证 / 回归验证） |
+| `/测试数据准备` | 根据用例文档生成配套测试数据准备文档 |
+| `/测试用例评审` | 5 维度评审（需求覆盖率、规范性、场景完备性、NFR、UI/交互） |
+| `/填充所属模块` | 批量填充 xlsx 中的「所属模块」路径字段 |
 
-**用法：**
-```
-/升级刷机测试用例 需求文档.md
-```
+### Phase 3 - 测试执行
 
-**覆盖范围：**
-- P1：数据库脚本变更
-- P1：OTA 升级验证
-- P1：新版本刷机初始化
+| 命令 | 说明 |
+|------|------|
+| `/测试执行` | 推送到 TestSprite 执行，失败时自动降级到本地 Playwright |
 
----
+### Phase 4 - 分析优化
 
-### 2️⃣ Bugfix验证
+| 命令 | 说明 |
+|------|------|
+| `/用例分析与优化` | 分析执行结果，区分用例问题和产品 Bug，自动优化用例并生成 Bug 报告 |
+| `/记录Bug` | 记录测试 Bug，自动创建 Jira 单 |
+| `/AI QA Bug Agent` | 分析问题描述/截图/日志，生成结构化 Bug 报告 |
 
-#### `/Bugfix验证用例`
-将Bug修复信息转换为高效可靠的验证用例（xlsx 格式）
+### Phase 5 - 报告
 
-**用法：**
-```
-/Bugfix验证用例 Bug修复报告.md
-/Bugfix验证用例 <直接描述Bug和修复方案>
-```
+| 命令 | 说明 |
+|------|------|
+| `/缺陷统计报告` | 汇总所有轮次缺陷，生成统计分析报告 |
+| `/测试报告` | 基于执行记录和缺陷报告，生成完整 9 章测试报告 |
 
-**验证模型（三层）：**
-- P0 根因验证：用DevTools/日志/数据库等客观手段验证根本原因已消除
-- P1 症状验证：复现原始Bug路径，确认症状消失
-- P1/P2 回归验证：验证修复未影响相关功能
+### 辅助工具
 
-**效率控制：** 总用例数 4-11 条，每条预期结果必须可量化、可工具化、可对比
-
-**验证模式库：** 内置可复用的验证模式（Pattern），遇到同类Bug自动匹配
+| 命令 | 说明 |
+|------|------|
+| `/structure` | 树形展示当前项目目录结构 |
+| `/更新问答记录` | 将对话问答追加到 conversation-qa.md |
 
 ---
 
-### 3️⃣ 测试用例评审
-
-#### `/测试用例评审`
-评审现有测试用例的完整性和规范性
-
-**用法：**
-```
-/测试用例评审 测试用例.xlsx
-/测试用例评审 测试用例.md
-```
-
-**评审维度：**
-- 规范性：字段完整性、格式正确性
-- 完整性：步骤清晰度、结果对应性
-- 可执行性：是否可独立执行
-- 覆盖度：需求覆盖、场景覆盖
-
----
-
-### 4️⃣ 项目管理工具
-
-#### `/structure`
-快速查看当前项目的目录结构
-
-**用法：**
-```
-/structure
-```
-
-**功能：**
-- 以树形结构展示项目目录
-- 自动添加文件说明
-- 显示统计信息
-
----
-
-#### `/更新问答记录`
-将当前对话的问答内容追加到 conversation-qa.md
-
-**用法：**
-```
-/更新问答记录
-```
-
-**功能：**
-- 自动整理当前对话问答
-- 问题用英文记录，答案用中文记录
-- 保持格式一致性
-
----
-
-## 📁 项目结构
+## 项目结构
 
 ```
 TestGo/
-├── .claude/                          ← Claude Code 配置目录
-│   ├── skills/                       ← 快捷命令（Skills）
-│   │   ├── gen-functional-testcase.md
-│   │   ├── gen-compatibility-testcase.md
-│   │   ├── gen-special-testcase.md
-│   │   ├── gen-upgrade-testcase.md
-│   │   ├── gen-bugfix-verify.md      ← Bugfix验证用例生成
-│   │   ├── review-testcase.md
-│   │   ├── update-qa.md
-│   │   └── structure.md
-│   ├── settings.local.json           ← 本地配置
-│   └── README.md                     ← 本文档
+├── .claude/
+│   ├── skills/                  ← 19 个 Skill 命令定义
+│   ├── settings.local.json      ← 权限配置
+│   └── README.md                ← 本文档
 │
-├── original/                         ← 原始文档
-│   └── SKILL.md                      ← 原始需求转用例规范
+├── prd/                         ← 需求文档
+│   ├── testcase-spec.md         ← 用例字段规范（核心共享）
+│   ├── AI学习任务/
+│   ├── AI模型管理/
+│   ├── AI设置/
+│   ├── ZettAgent/
+│   ├── 云端会员付费/
+│   └── 新设备初始化/
 │
-├── docs/                             ← 测试用例规范文档
-│   ├── testcase-spec.md              ← 共享规范（核心）
-│   ├── skill-functional-test.md      ← 功能测试规范
-│   ├── skill-compatibility-test.md   ← 兼容性测试规范
-│   ├── skill-special-test.md         ← 专项测试规范
-│   ├── skill-upgrade-test.md         ← 升级测试规范
-│   └── skill-bugfix-verify.md        ← Bugfix验证规范（含模式库）
+├── testcase/                    ← 测试产出（用例/策略/报告/脚本）
+│   ├── AI学习任务/              ← 含 Playwright e2e 测试
+│   ├── AI模型管理/
+│   ├── CopySource_AI学习继承/
+│   ├── ZettAgent/
+│   ├── 云账号系统/
+│   └── 新设备初始化/
 │
-└── conversation-qa.md                ← 对话问答记录
+├── example/                     ← 模板参考
+│   ├── TestStrategy.md          ← 策略模板
+│   ├── TestCase.md              ← 用例模板
+│   ├── TestExecution.md         ← 执行记录模板
+│   ├── BugReporting.md          ← 缺陷报告模板
+│   ├── TestReport.md            ← 测试报告模板
+│   └── agents.md                ← Agent 定义
+│
+├── doc/
+│   └── QA-HowTo.md             ← QA 问答知识库
+│
+├── docs/
+│   └── conversation-qa.md       ← 历史对话记录
+│
+└── scripts/                     ← 自动化脚本
+```
+
+### 每个 testcase 模块目录结构
+
+```
+testcase/{模块名}/
+├── .pipeline-state-pc.json          ← QA 管线进度（PC 端）
+├── {Module}_{Ver}_{plat}_Strategy.md ← 测试策略
+├── {Module}_{Ver}_{plat}_PRD_Supplements.md ← PRD 补充清单
+├── gen_testcases_pc.py              ← 用例生成脚本（Python + openpyxl）
+├── {Module}_{Ver}_{plat}_Functional.xlsx    ← 功能测试用例
+├── {Module}_{Ver}_{plat}_Review.md  ← 评审报告
+├── e2e/                             ← Playwright 自动化测试（可选）
+└── screenshots/                     ← 测试截图（可选）
 ```
 
 ---
 
-## 💡 使用技巧
-
-### 批量生成测试用例
-
-如果需要为同一需求文档生成多种类型的测试用例，可以连续调用：
+## 全流程 QA 管线
 
 ```
-/功能测试用例 需求.md
-/兼容性测试用例 需求.md
-/专项测试用例 需求.md
+Phase 0（可选）  Phase 1         Phase 2         Phase 3      Phase 4        Phase 5
+Figma分析    →  策略+PRD反哺  →  用例设计+评审  →  测试执行  →  分析优化    →  报告
+  │               │                │               │             │              │
+UI Spec        Strategy.md     gen_testcases.py  Execution.md  Bug分类       Report.md
+               Supplements.md  Functional.xlsx                 用例修正      BugReport.md
 ```
 
-会生成三个独立的 xlsx 文件：
-- `需求_功能测试用例.xlsx`
-- `需求_兼容性测试用例.xlsx`
-- `需求_专项测试用例.xlsx`
+**每个阶段暂停等用户确认后才继续下一阶段。**
 
-### Bugfix快速验证
+### 常用参数
 
-修复Bug后，生成验证用例并评审：
+```bash
+# PC 端功能测试（最常用）
+/全流程QA管线 prd/xxx.md --platform pc --no-testsprite
 
-```
-/Bugfix验证用例 修复报告.md
-/测试用例评审 项目_Bug描述_Bugfix验证用例.xlsx
-```
+# 含 Figma 设计稿分析
+/全流程QA管线 prd/xxx.md --platform pc --figma <figma-url> --no-testsprite
 
-### 快速评审
+# 移动端
+/全流程QA管线 prd/xxx.md --platform mobile --no-testsprite
 
-生成用例后，立即调用评审命令检查质量：
-
-```
-/功能测试用例 需求.md
-/测试用例评审 需求_功能测试用例.xlsx
-```
-
-### 查看项目结构
-
-快速了解项目文件组织：
-
-```
-/structure
-```
-
-### 记录对话
-
-在完成一轮重要的对话后，记得保存记录：
-
-```
-/更新问答记录
+# 多种用例类型
+/全流程QA管线 prd/xxx.md --types functional,compatibility
 ```
 
 ---
 
-## 🔧 自定义配置
+## 测试环境
 
-### 修改权限设置
-
-编辑 `.claude/settings.local.json` 可以调整权限策略。
-
-### 添加新的 Skill
-
-在 `.claude/skills/` 目录下创建新的 `.md` 文件，按照以下格式编写：
-
-```markdown
----
-name: Skill 名称
-description: Skill 描述。用法：/Skill名称 <参数>
----
-
-Skill 的详细 Prompt 内容
-```
+| 项目 | 值 |
+|------|------|
+| 设备 | Zettlab-D6-2772 (ZettOS NAS) |
+| IP | 192.168.31.75:80 |
+| 账号 | admin / Test2025 |
+| CPU / RAM | RK3588 / 16GB |
+| 前端框架 | Vue.js 微前端 + Element Plus + Tailwind CSS |
 
 ---
 
-## 📖 参考资源
+## 参考资源
 
-- **核心规范**：`docs/testcase-spec.md` - 定义了所有测试用例的字段规范和格式要求
-- **示例参考**：`docs/skill-*.md` - 每个文档都包含完整的用例示例
-- **对话记录**：`conversation-qa.md` - 查看历史问答，学习最佳实践
+- **用例规范**：`prd/testcase-spec.md` - 所有测试用例的字段规范和格式要求
+- **模板参考**：`example/` 目录下的 5 个模板文件
+- **QA 知识库**：`doc/QA-HowTo.md`
 
 ---
 
-*创建时间：2026-02-10*
-*最后更新：2026-03-03*
-*版本：v1.3*
+*版本：v2.0*
+*最后更新：2026-04-09*

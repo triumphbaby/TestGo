@@ -7,7 +7,7 @@ description: 将需求文档转换为兼容性测试用例（xlsx格式）。用
 
 ## 执行流程
 
-1. 读取项目根目录下 `docs/testcase-spec.md`，获取用例字段规范、输出格式和优先级定义
+1. 读取项目根目录下 `prd/testcase-spec.md`，获取用例字段规范、输出格式和优先级定义
 2. 读取并分析用户提供的需求文档（文件路径或粘贴文本）
 3. **判断需求类型**：
    - **新需求**（全新功能/模块）：从零设计用例，所有用例标记为 `[NEW]`
@@ -16,9 +16,9 @@ description: 将需求文档转换为兼容性测试用例（xlsx格式）。用
      - 无：按新需求流程处理
 4. 按照下方覆盖清单逐项设计测试用例
 5. 为每条用例填写「测试活动阶段」（兼容性测试 Skill 默认为"兼容测试"）和「风险对应」字段
-6. 使用 Python + openpyxl 按照 `docs/testcase-spec.md` 中的表格结构和样式要求生成 xlsx 文件
-7. 按照 `docs/testcase-spec.md` 中的自检清单进行检查，确认无遗漏
-8. 输出用例统计摘要（按 `docs/testcase-spec.md` 第五章的格式输出优先级分布和场景覆盖）
+6. 使用 Python + openpyxl 按照 `prd/testcase-spec.md` 中的表格结构和样式要求生成 xlsx 文件
+7. 按照 `prd/testcase-spec.md` 中的自检清单进行检查，确认无遗漏
+8. 输出用例统计摘要（按 `prd/testcase-spec.md` 第五章的格式输出优先级分布和场景覆盖）
 
 ## 兼容性测试覆盖清单
 
@@ -78,7 +78,7 @@ description: 将需求文档转换为兼容性测试用例（xlsx格式）。用
 
 ## 重要提示
 
-- 严格遵循 `docs/testcase-spec.md` 中定义的字段规范
+- 严格遵循 `prd/testcase-spec.md` 中定义的字段规范
 - 输出文件命名：`{需求文档名}_兼容性测试用例.xlsx`
 - 同时生成 `{需求文档名}_兼容性测试用例_合并.xlsx`（多 Sheet 合并为单 Sheet 副本）
 - 保存在需求文档同目录下

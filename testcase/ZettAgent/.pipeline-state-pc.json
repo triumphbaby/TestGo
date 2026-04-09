@@ -1,0 +1,24 @@
+{
+  "prd_path": "prd/ZettAgent/mvp_prd.md",
+  "module_name": "ZettAgent",
+  "module_id": "V190",
+  "current_phase": 1,
+  "platform": "pc",
+  "options": {
+    "no_testsprite": true,
+    "types": ["functional"]
+  },
+  "artifacts": {
+    "ui_spec": "",
+    "strategy": "testcase/ZettAgent/ZettAgent_V190_pc_Strategy.md",
+    "prd_supplements": 29,
+    "testcases": [],
+    "review_report": "",
+    "executions": [],
+    "bugs": [],
+    "bug_report": "",
+    "test_report": ""
+  },
+  "started_at": "2026-04-09T10:00:00Z",
+  "updated_at": "2026-04-09T11:00:00Z"
+}
